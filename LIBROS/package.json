@@ -2,16 +2,18 @@
   "name": "libros",
   "version": "1.0.0",
   "description": "API de libros",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.1",
     "express": "^4.18.2",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.1.1"
   }
 }

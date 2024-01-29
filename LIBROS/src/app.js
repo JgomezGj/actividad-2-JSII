@@ -1,15 +1,35 @@
 const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
 const app = express();
+
 
 app.use(express.json());
 
-const libros = [
-    {id: 1, titulo: "Sin limites", autor: "Jim Kwik"},
-    {id: 2, titulo: "Cien años de soledad", autor: "Gabriel Garcia Marquez"},
-    {id: 3, titulo: "Pensar rapido pensar despacio", autor: "Daniel Kahneman"}
-];
+const mongoUri = process.env.MONGODB_URI;
 
-let nextId = 4;
+mongoose
+.connect(mongoUri)
+.then(() => {
+    console.log("Conectado a MongoDB");
+}).catch((err) => {
+    console.error("Error al conectar a MongoDB", err);
+});
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "Error de conexión"));
+
+db.once("open", () => {
+    console.log("Conectado a MongoDB");
+});
+
+const libroSchema = new mongoose.Schema({
+    titulo: String,
+    autor: String
+})
+
+const Libro = mongoose.model("Libro", libroSchema);
 
 app.get("/", (req, res) => {
     res.send("Bienvenidos a la app de libros");
