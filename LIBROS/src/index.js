@@ -129,5 +129,10 @@ app.listen(PORT, () => {
   console.log("Servidor ejecutándose en http://localhost:3000/");
 });
 
-//Para subir a render.com build command npm install, start command npm run start
-//Y agregar las variables de entorno que en este caso es solo 1
+
+
+
+
+
+
+
